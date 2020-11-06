@@ -3,12 +3,12 @@ const initialState = {
   user: null,
 };
 
-export const reducer = (state, action) => {
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TO_FAVORITES':
       return {
         ...state,
-        favorites: [...state, action.item],
+        favorites: [...state.favorites, action.item],
       };
     default:
       return state;

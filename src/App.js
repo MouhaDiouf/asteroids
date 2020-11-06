@@ -28,7 +28,7 @@ function App() {
             {nearEarthObjects?.length ? (
               <div className="app__browse_asteroids">
                 {nearEarthObjects.map((asteroid) => (
-                  <Asteroid />
+                  <Asteroid asteroid={asteroid} />
                 ))}
               </div>
             ) : (
