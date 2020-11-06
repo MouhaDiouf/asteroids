@@ -7,6 +7,7 @@ function Login() {
   const signIn = (e) => {
     e.preventDefault();
   };
+  const register = (e) => {};
   return (
     <div className="login">
       <div className="login__container">
@@ -34,7 +35,7 @@ function Login() {
             Sign In
           </button>
         </form>
-        <button className="login__registerButton">
+        <button onClick={register} className="login__registerButton">
           Create Your Asteroid Account
         </button>
       </div>
