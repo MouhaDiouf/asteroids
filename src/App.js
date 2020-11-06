@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import Meteor from '../src/Images/meteor.png';
 import './App.css';
 import ChooseDate from './ChooseDate';
-
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import NavBar from './NavBar';
 function App() {
   const [nearEarthObjects, setNearEarthObjects] = useState('');
 
@@ -16,30 +17,44 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <h1>Welcome to Asteroids</h1>
-      {nearEarthObjects?.length ? (
-        <div className="App__browse_asteroids">
-          {nearEarthObjects.map((asteroid) => (
-            <div className="App__asteroid_div">
-              <img src={Meteor} alt="Meteor" />
-              Icons made by{' '}
-              <a
-                href="https://www.flaticon.com/authors/smashicons"
-                title="Smashicons"
-              >
-                Smashicons
-              </a>{' '}
-              from{' '}
-              <a href="https://www.flaticon.com/" title="Flaticon">
-                www.flaticon.com
-              </a>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p>Fetching near earth objects</p>
-      )}
-      <ChooseDate />
+      <Router>
+        <NavBar />
+        <Switch>
+          <Route exact path="/">
+            <h1>Welcome to Asteroids</h1>
+
+            {nearEarthObjects?.length ? (
+              <div className="App__browse_asteroids">
+                {nearEarthObjects.map((asteroid) => (
+                  <div className="App__asteroid_div">
+                    <img src={Meteor} alt="Meteor" />
+                    Icons made by{' '}
+                    <a
+                      href="https://www.flaticon.com/authors/smashicons"
+                      title="Smashicons"
+                    >
+                      Smashicons
+                    </a>{' '}
+                    from{' '}
+                    <a href="https://www.flaticon.com/" title="Flaticon">
+                      www.flaticon.com
+                    </a>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p>Fetching near earth objects</p>
+            )}
+          </Route>
+          <Route path="/choose-date">
+            <ChooseDate />
+          </Route>
+          <Route path="/">
+            <h1>Not found</h1>
+            <Switch />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
