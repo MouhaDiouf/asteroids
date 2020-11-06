@@ -4,7 +4,7 @@ body {
   padding: 0;
 }
 
-.App__browse_asteroids {
+.app__browse_asteroids {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,14 +13,14 @@ body {
   flex-wrap: wrap;
 }
 
-.App__asteroid_div {
+.app__asteroid_div {
   width: 300px;
   background-color: red;
   display: block;
   margin: 10px;
 }
 
-.App__asteroid_div > img {
+.app__asteroid_div > img {
   object-fit: contain;
   width: 100px;
 }

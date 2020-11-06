@@ -5,6 +5,7 @@ import './App.css';
 import ChooseDate from './ChooseDate';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import NavBar from './NavBar';
+import { useStateValue } from './StateProvider';
 function App() {
   const [nearEarthObjects, setNearEarthObjects] = useState('');
 
@@ -15,6 +16,16 @@ function App() {
       )
       .then(({ data }) => setNearEarthObjects(data.near_earth_objects));
   }, []);
+  const [state, dispatch] = useStateValue();
+  const addToFavorites = () => {
+    //dispatch the item into the favorites
+    dispatch({
+      type: 'ADD_TO_FAVORITES',
+      item: {
+        name: 'item',
+      },
+    });
+  };
   return (
     <div className="app">
       <Router>
@@ -28,17 +39,7 @@ function App() {
                 {nearEarthObjects.map((asteroid) => (
                   <div className="app__asteroid_div">
                     <img src={Meteor} alt="Meteor" />
-                    Icons made by{' '}
-                    <a
-                      href="https://www.flaticon.com/authors/smashicons"
-                      title="Smashicons"
-                    >
-                      Smashicons
-                    </a>{' '}
-                    from{' '}
-                    <a href="https://www.flaticon.com/" title="Flaticon">
-                      www.flaticon.com
-                    </a>
+                    <button onClick={addToFavorites}>Add To Favorites</button>
                   </div>
                 ))}
               </div>

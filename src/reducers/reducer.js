@@ -1,8 +1,9 @@
 export const initialState = {
   favorites: [],
+  user: null,
 };
 
-const reducer = (state, action) => {
+export const reducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TO_FAVORITES':
       return {
