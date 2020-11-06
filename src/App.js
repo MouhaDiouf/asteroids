@@ -5,7 +5,7 @@ import './App.css';
 import ChooseDate from './ChooseDate';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import NavBar from './NavBar';
-import { useStateValue } from './StateProvider';
+import Asteroid from './Asteroid';
 function App() {
   const [nearEarthObjects, setNearEarthObjects] = useState('');
 
@@ -16,16 +16,7 @@ function App() {
       )
       .then(({ data }) => setNearEarthObjects(data.near_earth_objects));
   }, []);
-  const [state, dispatch] = useStateValue();
-  const addToFavorites = () => {
-    //dispatch the item into the favorites
-    dispatch({
-      type: 'ADD_TO_FAVORITES',
-      item: {
-        name: 'item',
-      },
-    });
-  };
+
   return (
     <div className="app">
       <Router>
@@ -37,10 +28,7 @@ function App() {
             {nearEarthObjects?.length ? (
               <div className="app__browse_asteroids">
                 {nearEarthObjects.map((asteroid) => (
-                  <div className="app__asteroid_div">
-                    <img src={Meteor} alt="Meteor" />
-                    <button onClick={addToFavorites}>Add To Favorites</button>
-                  </div>
+                  <Asteroid />
                 ))}
               </div>
             ) : (

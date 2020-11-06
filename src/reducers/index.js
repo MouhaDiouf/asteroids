@@ -1,4 +1,4 @@
-export const initialState = {
+const initialState = {
   favorites: [],
   user: null,
 };
@@ -14,3 +14,5 @@ export const reducer = (state, action) => {
       return state;
   }
 };
+
+export default reducer;
