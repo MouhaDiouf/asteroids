@@ -6,6 +6,7 @@ import ChooseDate from './ChooseDate';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import NavBar from './NavBar';
 import Asteroid from './Asteroid';
+import Login from './reducers/Login/Login';
 function App() {
   const [nearEarthObjects, setNearEarthObjects] = useState('');
 
@@ -37,6 +38,9 @@ function App() {
           </Route>
           <Route path="/choose-date">
             <ChooseDate />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
           <Route path="/">
             <h1>Not found</h1>

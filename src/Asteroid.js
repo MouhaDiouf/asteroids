@@ -7,7 +7,6 @@ function Asteroid(props) {
   const { name, type } = props.asteroid;
 
   const handleAddToFavorites = () => {
-    console.log('Added to favorites');
     console.log(props.asteroid);
     props.addToFavoritesOnClick(props.asteroid);
   };
