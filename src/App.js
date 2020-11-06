@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Meteor from '../src/Images/meteor.png';
 import './App.css';
+import ChooseDate from './ChooseDate';
 
 function App() {
   const [nearEarthObjects, setNearEarthObjects] = useState('');
@@ -38,6 +39,7 @@ function App() {
       ) : (
         <p>Fetching near earth objects</p>
       )}
+      <ChooseDate />
     </div>
   );
 }
