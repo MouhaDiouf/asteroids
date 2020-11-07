@@ -1,10 +1,13 @@
+import axios from 'axios';
+
 export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
 export const ADDING_TO_FAVORITES = 'ADDING_TO_FAVORITES';
 export const SET_USER = 'SET_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
-require('dotenv').config();
+export const SEARCHING_BY_DATE = 'SEARCHING_BY_DATE';
+export const FINISHED_SEARCHING_BY_DATE = 'FINISHED_SEARCHING_BY_DATE';
 
-const api_key = process.env.API_KEY;
+const api_key = process.env.REACT_APP_API_KEY;
 export const addToFavorites = (asteroid) => (dispatch) => {
   dispatch({
     type: ADDING_TO_FAVORITES,
@@ -32,11 +35,19 @@ export const logout = () => (dispatch) => {
   });
 };
 
-export const searchByDate = (startDate, endDate) => {
+export const searchByDate = (startDate, endDate) => (dispatch) => {
   dispatch({
     type: SEARCHING_BY_DATE,
   });
-  axios.get(
-    `https://api.nasa.gov/neo/rest/v1/feed?start_date=2020-12-12&end_date=2020-09-09&detailed=true&api_key=${api_key}`
-  );
+  axios
+    .get(
+      `https://api.nasa.gov/neo/rest/v1/feed?start_date=${startDate}&end_date=${endDate}&detailed=true&api_key=${api_key}`
+    )
+    .then((response) => {
+      dispatch({
+        type: FINISHED_SEARCHING_BY_DATE,
+        result: response.data.near_earth_objects,
+      });
+    })
+    .catch((error) => console.log(error));
 };

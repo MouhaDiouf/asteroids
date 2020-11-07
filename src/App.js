@@ -13,11 +13,13 @@ import { setUser, logout } from './actions';
 import Favorites from './Favorites/Favorites';
 
 function App(props) {
+  const api_key = process.env.REACT_APP_API_KEY;
+  console.log(process.env);
   const [nearEarthObjects, setNearEarthObjects] = useState('');
   useEffect(() => {
     axios
       .get(
-        'https://api.nasa.gov/neo/rest/v1/neo/browse?page=0&size=10&api_key=dbZCMQWD98s4FbQbtwuEFiwz1Gqxrm2FbdYDuZf4'
+        `https://api.nasa.gov/neo/rest/v1/neo/browse?page=0&size=10&api_key=${api_key}`
       )
       .then(({ data }) => setNearEarthObjects(data.near_earth_objects));
     auth.onAuthStateChanged((authUser) => {

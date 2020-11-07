@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { searchByDate } from './actions';
+import { connect } from 'react-redux';
 
 function ChooseDate(props) {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
+    props.handleSearchByDate(startDate, endDate);
   };
   return (
     <div>
@@ -15,7 +18,7 @@ function ChooseDate(props) {
           name="start-date"
           id="startDate"
           required
-          placeholder="dd-mm-yyyy"
+          placeholder="yyyy-mm-dd"
           min="1900-01-01"
           max="2030-12-31"
           onChange={(e) => setStartDate(e.target.value)}
@@ -23,7 +26,7 @@ function ChooseDate(props) {
         <br />
         <label htmlFor="endDate">End date: </label> <br />
         <input
-          placeholder="dd-mm-yyyy"
+          placeholder="yyyy-mm-dd"
           min="1900-01-01"
           max="2030-12-31"
           name="end-date"
@@ -38,4 +41,9 @@ function ChooseDate(props) {
   );
 }
 
-export default ChooseDate;
+const mapDispatchToProps = (dispatch) => ({
+  handleSearchByDate: (startDate, endDate) =>
+    dispatch(searchByDate(startDate, endDate)),
+});
+
+export default connect(null, mapDispatchToProps)(ChooseDate);
