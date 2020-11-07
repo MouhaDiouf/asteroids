@@ -1,11 +1,28 @@
 import React from 'react';
-
-function Favorite({ asteroid }) {
+import { db } from '../firebase';
+import { connect } from 'react-redux';
+function Favorite(props) {
+  const { asteroid } = props;
+  const { user } = props.userState;
+  const removeFromFavorites = () => {
+    if (user) {
+      db.collection('users')
+        .doc(user.uid)
+        .collection('favorites')
+        .doc(props.asteroid.id)
+        .delete();
+    }
+  };
   return (
-    <div>
+    <div className="favorite">
       <h2>{asteroid.id}</h2>
+      <button onClick={removeFromFavorites}>Remove From Favorites</button>
     </div>
   );
 }
+const mapStateToProps = (state) => ({
+  userState: state,
+});
 
-export default Favorite;
+const mapDispatchToProps = (dispatch) => ({});
+export default connect(mapStateToProps, mapDispatchToProps)(Favorite);

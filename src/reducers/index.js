@@ -4,6 +4,8 @@ import {
   SET_USER,
   LOGOUT_USER,
   FINISHED_SEARCHING_BY_DATE,
+  SEARCHING_BY_ID,
+  SEARCH_BY_ID_FINISHED,
 } from '../actions';
 
 const initialState = {
@@ -12,7 +14,6 @@ const initialState = {
 };
 
 export const reducer = (state = initialState, action) => {
-  console.log('action is ', action);
   switch (action.type) {
     case ADDING_TO_FAVORITES:
       return {
@@ -31,6 +32,19 @@ export const reducer = (state = initialState, action) => {
         searchingByDate: false,
         asteroidsByDate: action.result,
       };
+    case SEARCHING_BY_ID: {
+      return {
+        ...state,
+        searchingById: true,
+      };
+    }
+    case SEARCH_BY_ID_FINISHED: {
+      return {
+        ...state,
+        asteroidFetched: action.asteroid,
+        searchingById: false,
+      };
+    }
     case SET_USER:
       return {
         ...state,

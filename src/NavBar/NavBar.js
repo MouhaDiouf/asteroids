@@ -22,11 +22,16 @@ function NavBar(props) {
         <Link to="/">Home</Link>
       </span>
       <span>
-        <Link to="/choose-date">Search By Date</Link>
+        <Link to="/search-by-date">Search By Date</Link>
       </span>
       <span>
-        <Link to="/choose-by-id">Asteroid ID Search</Link>
+        <Link to="/search-by-id">Asteroid ID Search</Link>
       </span>
+      {user && (
+        <span>
+          <Link to="/favorites">Your Favorites</Link>
+        </span>
+      )}
       <span>
         {!user && <span>Welcome Guest</span> && <Link to="/login">Login</Link>}
         {user && <span>Welcome {user.email}</span>} <br />

@@ -11,6 +11,7 @@ import Login from './Login/Login';
 import { auth } from './firebase';
 import { setUser, logout } from './actions';
 import Favorites from './Favorites/Favorites';
+import IdSearch from './IdSearch/IdSearch';
 
 function App(props) {
   const api_key = process.env.REACT_APP_API_KEY;
@@ -55,8 +56,11 @@ function App(props) {
           <Route path="/favorites">
             <Favorites />
           </Route>
-          <Route path="/choose-date">
+          <Route path="/search-by-date">
             <ChooseDate />
+          </Route>
+          <Route path="/search-by-id">
+            <IdSearch />
           </Route>
           <Route path="/login">
             <Login />

@@ -6,6 +6,8 @@ export const SET_USER = 'SET_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const SEARCHING_BY_DATE = 'SEARCHING_BY_DATE';
 export const FINISHED_SEARCHING_BY_DATE = 'FINISHED_SEARCHING_BY_DATE';
+export const SEARCHING_BY_ID = 'SEARCHING_BY_ID';
+export const SEARCH_BY_ID_FINISHED = 'SEARCH_BY_ID_FINISHED';
 
 const api_key = process.env.REACT_APP_API_KEY;
 export const addToFavorites = (asteroid) => (dispatch) => {
@@ -28,7 +30,6 @@ export const setUser = (user) => (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
-  console.log('logout called');
   dispatch({
     type: LOGOUT_USER,
     user: null,
@@ -47,6 +48,22 @@ export const searchByDate = (startDate, endDate) => (dispatch) => {
       dispatch({
         type: FINISHED_SEARCHING_BY_DATE,
         result: response.data.near_earth_objects,
+      });
+    })
+    .catch((error) => console.log(error));
+};
+
+export const idSearch = (id) => (dispatch) => {
+  dispatch({
+    type: SEARCHING_BY_ID,
+  });
+
+  axios
+    .get(`https://api.nasa.gov/neo/rest/v1/neo/${id}?api_key=${api_key}`)
+    .then((response) => {
+      dispatch({
+        type: SEARCH_BY_ID_FINISHED,
+        asteroid: response.data,
       });
     })
     .catch((error) => console.log(error));
