@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { auth } from '../../firebase';
+import { auth } from '../firebase';
 import './Login.css';
 
 function Login() {
@@ -49,6 +49,7 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete="true"
           />
           <button onClick={signIn} className="login__signInButton">
             Sign In

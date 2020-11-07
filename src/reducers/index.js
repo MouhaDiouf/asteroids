@@ -1,4 +1,9 @@
-import { ADDING_TO_FAVORITES, ADD_TO_FAVORITES } from '../actions';
+import {
+  ADDING_TO_FAVORITES,
+  ADD_TO_FAVORITES,
+  SET_USER,
+  LOGOUT_USER,
+} from '../actions';
 
 const initialState = {
   favorites: [],
@@ -17,6 +22,16 @@ export const reducer = (state = initialState, action) => {
         ...state,
         favorites: [...state.favorites, action.item],
         addingToFavorites: false,
+      };
+    case SET_USER:
+      return {
+        ...state,
+        user: action.user,
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        user: action.user,
       };
     default:
       return state;

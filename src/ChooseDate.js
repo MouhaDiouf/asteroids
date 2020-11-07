@@ -5,7 +5,6 @@ function ChooseDate(props) {
   const [endDate, setEndDate] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submitted');
   };
   return (
     <div>

@@ -2,13 +2,24 @@ import React from 'react';
 import Meteor from './Images/meteor.png';
 import { addToFavorites } from './actions';
 import { connect } from 'react-redux';
+import { db } from './firebase';
 
 function Asteroid(props) {
   const { name, type } = props.asteroid;
+  const { user } = props.userState;
 
   const handleAddToFavorites = () => {
-    console.log(props.asteroid);
-    props.addToFavoritesOnClick(props.asteroid);
+    console.log('this is asteroid ', props.asteroid);
+    console.log(db);
+    if (user) {
+      db.collection('users')
+        .doc(user.uid)
+        .collection('favorites')
+        .doc(props.asteroid.id)
+        .set({
+          asteroid: props.asteroid,
+        });
+    }
   };
   return (
     <div className="app__asteroid_div">
@@ -20,7 +31,11 @@ function Asteroid(props) {
   );
 }
 
+const mapStateToProps = (state) => ({
+  userState: state,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   addToFavoritesOnClick: (asteroid) => dispatch(addToFavorites(asteroid)),
 });
-export default connect(null, mapDispatchToProps)(Asteroid);
+export default connect(mapStateToProps, mapDispatchToProps)(Asteroid);
