@@ -1,5 +1,7 @@
 import React from 'react';
 import Asteroid from '../Asteroid';
+import spinner from '../Images/spinner.gif';
+import './Home.css';
 
 function Home({ nearEarthObjects }) {
   return (
@@ -13,7 +15,10 @@ function Home({ nearEarthObjects }) {
           ))}
         </div>
       ) : (
-        <p>Fetching near earth objects</p>
+        <>
+          <p>Fetching near earth objects</p>
+          <img className="spinner" src={spinner} alt="spinner" />
+        </>
       )}
     </div>
   );
