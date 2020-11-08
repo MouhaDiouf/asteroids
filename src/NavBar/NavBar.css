@@ -1,4 +1,22 @@
 .navigation {
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+}
+
+.navigation__icon {
+  background-color: rebeccapurple;
+  width: 30px;
+}
+.navigation__element > a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navigation__icon-horizontal {
+  font-size: 30px;
+  color: white;
+}
+
+.navigation__right {
+  right: 20px;
 }

@@ -6,17 +6,17 @@ import ChooseDate from './ChooseDate';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import NavBar from './NavBar/NavBar';
 import { connect } from 'react-redux';
-import Asteroid from './Asteroid';
 import Login from './Login/Login';
 import { auth } from './firebase';
 import { setUser, logout } from './actions';
 import Favorites from './Favorites/Favorites';
 import IdSearch from './IdSearch/IdSearch';
+import Home from './Home/Home';
 
 function App(props) {
   const api_key = process.env.REACT_APP_API_KEY;
-  console.log(process.env);
   const [nearEarthObjects, setNearEarthObjects] = useState('');
+
   useEffect(() => {
     axios
       .get(
@@ -41,17 +41,7 @@ function App(props) {
         <NavBar />
         <Switch>
           <Route exact path="/">
-            <h1>Welcome to Asteroids</h1>
-
-            {nearEarthObjects?.length ? (
-              <div className="app__browse_asteroids">
-                {nearEarthObjects.map((asteroid) => (
-                  <Asteroid asteroid={asteroid} key={asteroid.id} />
-                ))}
-              </div>
-            ) : (
-              <p>Fetching near earth objects</p>
-            )}
+            <Home nearEarthObjects={nearEarthObjects} />
           </Route>
           <Route path="/favorites">
             <Favorites />

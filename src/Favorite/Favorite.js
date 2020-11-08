@@ -10,7 +10,11 @@ function Favorite(props) {
         .doc(user.uid)
         .collection('favorites')
         .doc(props.asteroid.id)
-        .delete();
+        .delete()
+        .then(() => console.log('Asteroid successfully removed from favorites'))
+        .catch((error) =>
+          console.error('Error removing the asteroid: ', error)
+        );
     }
   };
   return (

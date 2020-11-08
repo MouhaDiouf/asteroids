@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../actions';
 import { auth } from '../firebase';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import './NavBar.css';
 
 function NavBar(props) {
@@ -18,29 +19,40 @@ function NavBar(props) {
 
   return (
     <div className="navigation">
-      <span>
-        <Link to="/">Home</Link>
-      </span>
-      <span>
-        <Link to="/search-by-date">Search By Date</Link>
-      </span>
-      <span>
-        <Link to="/search-by-id">Asteroid ID Search</Link>
-      </span>
-      {user && (
-        <span>
-          <Link to="/favorites">Your Favorites</Link>
+      <div className="navigation__left">
+        <span className="navigation__logo">
+          <Link to="/">Home</Link>
         </span>
-      )}
-      <span>
-        {!user && <span>Welcome Guest</span> && <Link to="/login">Login</Link>}
-        {user && <span>Welcome {user.email}</span>} <br />
-      </span>
-      {user && (
-        <a onClick={() => handleLogoutUser()} className="navigation__signout">
-          Logout
-        </a>
-      )}
+      </div>
+
+      <div className="navigation__icon">
+        <MoreHorizIcon className="navigation__icon-horizontal" />
+      </div>
+
+      <div className="navigation__right">
+        <span className="navigation__element">
+          <Link to="/search-by-date">Search By Date</Link>
+        </span>
+        <span className="navigation__element">
+          <Link to="/search-by-id">Asteroid ID Search</Link>
+        </span>
+        {user && (
+          <span className="navigation__element">
+            <Link to="/favorites">Your Favorites</Link>
+          </span>
+        )}
+        <span className="navigation__element">
+          {!user && <span>Welcome Guest</span> && (
+            <Link to="/login">Login</Link>
+          )}
+          {user && <span>Welcome {user.email}</span>} <br />
+        </span>
+        {user && (
+          <a onClick={() => handleLogoutUser()} className="navigation__signout">
+            Logout
+          </a>
+        )}
+      </div>
     </div>
   );
 }

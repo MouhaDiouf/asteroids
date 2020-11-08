@@ -26,7 +26,7 @@ function Favorites(props) {
     <div>
       <h1>Your Favorites</h1>
       {favorites.map((favorite) => (
-        <Favorite asteroid={favorite} />
+        <Favorite asteroid={favorite} key={favorite.id} />
       ))}
     </div>
   );
