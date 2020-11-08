@@ -10,10 +10,9 @@ import './NavBar.css';
 
 function NavBar(props) {
   const { user } = props.userState;
-  const [menu, setMenu] = useState('breadcrumb');
+  const [menuIcon, setMenuIcon] = useState('breadcrumb');
 
   const handleLogoutUser = () => {
-    console.log('handleLogoutUser called');
     props.handleLogout();
     if (user) {
       auth.signOut();
@@ -24,6 +23,7 @@ function NavBar(props) {
     const menu = document.querySelector('.menu-list');
     if (!menu.classList.contains('appear')) {
       document.querySelector('.navigation').classList.add('full-width');
+      document.querySelector('.navigation__left').style.display = 'none';
       menu.classList.remove('disappear');
       menu.classList.add('appear');
       closeOnListClick();
@@ -31,25 +31,25 @@ function NavBar(props) {
       menu.classList.remove('appear');
       menu.classList.add('disappear');
       document.querySelector('.navigation').classList.remove('full-width');
+      document.querySelector('.navigation__left').style.display = 'block';
     }
   };
 
   const toggleIcon = () => {
-    if (menu === 'breadcrumb') {
-      setMenu('close');
-    } else {
-      setMenu('breadcrumb');
-    }
+    console.log('menu icon is ', menuIcon);
+    menuIcon === 'close' ? setMenuIcon('breadcrumb') : setMenuIcon('close');
   };
 
   const closeOnListClick = () => {
-    const allNavLinks = Array.from(document.querySelectorAll('.menu-list li'));
+    const allNavLinks = Array.from(
+      document.querySelectorAll('.menu-list li a')
+    );
     allNavLinks.forEach((navLink) => {
       navLink.addEventListener('click', () => {
         const menu = document.querySelector('.menu-list');
         if (menu.classList.contains('appear')) {
           toggleMenu();
-          toggleIcon();
+          // toggleIcon();
         }
       });
     });
@@ -63,12 +63,12 @@ function NavBar(props) {
       </div>
 
       <div className="navigation__icon">
-        {menu === 'breadcrumb' ? (
+        {menuIcon === 'breadcrumb' ? (
           <MoreHorizIcon
             className="navigation__icon-horizontal breadcrumb"
             onClick={() => {
               toggleMenu();
-              toggleIcon();
+              // toggleIcon();
             }}
           />
         ) : (
@@ -76,7 +76,7 @@ function NavBar(props) {
             className="navigation__icon-close close-icon"
             onClick={() => {
               toggleMenu();
-              toggleIcon();
+              // toggleIcon();
             }}
           />
         )}

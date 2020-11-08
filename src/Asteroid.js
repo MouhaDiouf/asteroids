@@ -3,9 +3,10 @@ import Meteor from './Images/meteor.png';
 import { addToFavorites } from './actions';
 import { connect } from 'react-redux';
 import { db } from './firebase';
+import { Link } from 'react-router-dom';
 
 function Asteroid(props) {
-  const { name, type } = props.asteroid;
+  const { name, type, id } = props.asteroid;
   const { user } = props.userState;
   const removeFromFavorites = () => {
     if (user) {
@@ -22,8 +23,6 @@ function Asteroid(props) {
   };
 
   const handleAddToFavorites = () => {
-    console.log('this is asteroid ', props.asteroid);
-    console.log(db);
     if (user) {
       db.collection('users')
         .doc(user.uid)
@@ -36,7 +35,6 @@ function Asteroid(props) {
   };
   return (
     <div className="app__asteroid_div">
-      <h2>Hello</h2>
       <img src={Meteor} alt="Meteor" />
       <h1>{name}</h1>
       <h2>{type}</h2>
@@ -46,6 +44,7 @@ function Asteroid(props) {
       {user && props.favorite && (
         <button onClick={removeFromFavorites}>Remove From Favorites</button>
       )}
+      <Link to={`asteroids/${id}/details`}>More Details</Link>
     </div>
   );
 }

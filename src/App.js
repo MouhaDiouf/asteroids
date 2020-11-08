@@ -12,6 +12,8 @@ import { setUser, logout } from './actions';
 import Favorites from './Favorites/Favorites';
 import IdSearch from './IdSearch/IdSearch';
 import Home from './Home/Home';
+import AsteroidsDateResults from './AsteroidsDateResults/AsteroidsDateResults';
+import AsteroidDetails from './AsteroidDetails/AsteroidDetails';
 
 function App(props) {
   const api_key = process.env.REACT_APP_API_KEY;
@@ -37,6 +39,16 @@ function App(props) {
 
   return (
     <div className="app">
+      {/* <div className="wrapper"> */}
+      <div id="stars"></div>
+      <div id="stars2"></div>
+      <div id="stars3"></div>
+      {/* <div id="title">
+        <span>Pure CSS</span>
+        <br />
+        <span>Parallax ePIXEL</span>
+      </div> */}
+      {/* </div> */}
       <Router>
         <NavBar />
         <Switch>
@@ -54,6 +66,9 @@ function App(props) {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/asteroids/:id/details">
+            <AsteroidDetails />
           </Route>
           <Route path="/">
             <h1>Not found</h1>
