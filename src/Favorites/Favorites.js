@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../firebase';
 import { connect } from 'react-redux';
-import Favorite from '../Favorite/Favorite';
+import Asteroid from '../Asteroid';
+import './Favorites.css';
+
 function Favorites(props) {
   const { user } = props.userState;
   const [favorites, setFavorites] = useState([]);
@@ -25,9 +27,11 @@ function Favorites(props) {
   return (
     <div>
       <h1>Your Favorites</h1>
-      {favorites.map((favorite) => (
-        <Favorite asteroid={favorite} key={favorite.id} />
-      ))}
+      <div className="favorites-div">
+        {favorites.map((favorite) => (
+          <Asteroid asteroid={favorite} favorite="true" />
+        ))}
+      </div>
     </div>
   );
 }

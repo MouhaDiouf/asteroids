@@ -6,6 +6,8 @@ import {
   FINISHED_SEARCHING_BY_DATE,
   SEARCHING_BY_ID,
   SEARCH_BY_ID_FINISHED,
+  SEARCHING_BY_DATE,
+  SEARCH_BY_ID_ERROR,
 } from '../actions';
 
 const initialState = {
@@ -26,25 +28,37 @@ export const reducer = (state = initialState, action) => {
         favorites: [...state.favorites, action.item],
         addingToFavorites: false,
       };
+    case SEARCHING_BY_DATE:
+      return {
+        ...state,
+        searchingByDate: true,
+      };
     case FINISHED_SEARCHING_BY_DATE:
       return {
         ...state,
         searchingByDate: false,
         asteroidsByDate: action.result,
       };
-    case SEARCHING_BY_ID: {
+    case SEARCHING_BY_ID:
       return {
         ...state,
         searchingById: true,
       };
-    }
-    case SEARCH_BY_ID_FINISHED: {
+
+    case SEARCH_BY_ID_FINISHED:
       return {
         ...state,
         asteroidFetched: action.asteroid,
         searchingById: false,
       };
-    }
+
+    case SEARCH_BY_ID_ERROR:
+      return {
+        ...state,
+        searchByIdError: true,
+        searchingById: false,
+      };
+
     case SET_USER:
       return {
         ...state,

@@ -7,6 +7,19 @@ import { db } from './firebase';
 function Asteroid(props) {
   const { name, type } = props.asteroid;
   const { user } = props.userState;
+  const removeFromFavorites = () => {
+    if (user) {
+      db.collection('users')
+        .doc(user.uid)
+        .collection('favorites')
+        .doc(props.asteroid.id)
+        .delete()
+        .then(() => console.log('Asteroid successfully removed from favorites'))
+        .catch((error) =>
+          console.error('Error removing the asteroid: ', error)
+        );
+    }
+  };
 
   const handleAddToFavorites = () => {
     console.log('this is asteroid ', props.asteroid);
@@ -23,10 +36,16 @@ function Asteroid(props) {
   };
   return (
     <div className="app__asteroid_div">
+      <h2>Hello</h2>
       <img src={Meteor} alt="Meteor" />
       <h1>{name}</h1>
       <h2>{type}</h2>
-      <button onClick={handleAddToFavorites}>Add To Favorites</button>
+      {user && !props.favorite && (
+        <button onClick={handleAddToFavorites}>Add To Favorites</button>
+      )}
+      {user && props.favorite && (
+        <button onClick={removeFromFavorites}>Remove From Favorites</button>
+      )}
     </div>
   );
 }

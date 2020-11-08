@@ -8,6 +8,7 @@ export const SEARCHING_BY_DATE = 'SEARCHING_BY_DATE';
 export const FINISHED_SEARCHING_BY_DATE = 'FINISHED_SEARCHING_BY_DATE';
 export const SEARCHING_BY_ID = 'SEARCHING_BY_ID';
 export const SEARCH_BY_ID_FINISHED = 'SEARCH_BY_ID_FINISHED';
+export const SEARCH_BY_ID_ERROR = 'SEARCH_BY_ID_ERROR';
 
 const api_key = process.env.REACT_APP_API_KEY;
 export const addToFavorites = (asteroid) => (dispatch) => {
@@ -66,5 +67,9 @@ export const idSearch = (id) => (dispatch) => {
         asteroid: response.data,
       });
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      dispatch({
+        type: SEARCH_BY_ID_ERROR,
+      });
+    });
 };
