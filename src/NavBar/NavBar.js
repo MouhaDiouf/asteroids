@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../actions';
 import { auth } from '../firebase';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import CloseIcon from '@material-ui/icons/Close';
+
 import './NavBar.css';
 
 function NavBar(props) {
   const { user } = props.userState;
+  const [menu, setMenu] = useState('breadcrumb');
 
   const handleLogoutUser = () => {
     console.log('handleLogoutUser called');
@@ -17,42 +20,98 @@ function NavBar(props) {
     }
   };
 
+  const toggleMenu = () => {
+    const menu = document.querySelector('.menu-list');
+    if (!menu.classList.contains('appear')) {
+      document.querySelector('.navigation').classList.add('full-width');
+      menu.classList.remove('disappear');
+      menu.classList.add('appear');
+      closeOnListClick();
+    } else if (menu.classList.contains('appear')) {
+      menu.classList.remove('appear');
+      menu.classList.add('disappear');
+      document.querySelector('.navigation').classList.remove('full-width');
+    }
+  };
+
+  const toggleIcon = () => {
+    if (menu === 'breadcrumb') {
+      setMenu('close');
+    } else {
+      setMenu('breadcrumb');
+    }
+  };
+
+  const closeOnListClick = () => {
+    const allNavLinks = Array.from(document.querySelectorAll('.menu-list li'));
+    allNavLinks.forEach((navLink) => {
+      navLink.addEventListener('click', () => {
+        const menu = document.querySelector('.menu-list');
+        if (menu.classList.contains('appear')) {
+          toggleMenu();
+          toggleIcon();
+        }
+      });
+    });
+  };
   return (
     <div className="navigation">
       <div className="navigation__left">
         <span className="navigation__logo">
-          <Link to="/">Home</Link>
+          <Link to="/">ASTEROIDS</Link>
         </span>
       </div>
 
       <div className="navigation__icon">
-        <MoreHorizIcon className="navigation__icon-horizontal" />
+        {menu === 'breadcrumb' ? (
+          <MoreHorizIcon
+            className="navigation__icon-horizontal breadcrumb"
+            onClick={() => {
+              toggleMenu();
+              toggleIcon();
+            }}
+          />
+        ) : (
+          <CloseIcon
+            className="navigation__icon-close close-icon"
+            onClick={() => {
+              toggleMenu();
+              toggleIcon();
+            }}
+          />
+        )}
       </div>
 
-      <div className="navigation__right">
-        <span className="navigation__element">
+      <ul className="navigation__right menu-list disappear">
+        <li className="navigation__element">
+          <Link to="/">Home</Link>
+        </li>
+        <li className="navigation__element">
           <Link to="/search-by-date">Search By Date</Link>
-        </span>
-        <span className="navigation__element">
+        </li>
+        <li className="navigation__element">
           <Link to="/search-by-id">Asteroid ID Search</Link>
-        </span>
+        </li>
         {user && (
-          <span className="navigation__element">
+          <li className="navigation__element">
             <Link to="/favorites">Your Favorites</Link>
-          </span>
+          </li>
         )}
-        <span className="navigation__element">
-          {!user && <span>Welcome Guest</span> && (
-            <Link to="/login">Login</Link>
-          )}
-          {user && <span>Welcome {user.email}</span>} <br />
-        </span>
+        <li className="navigation__element">
+          {!user && <li>Welcome Guest</li> && <Link to="/login">Login</Link>}
+          {user && <li>Welcome {user.email}</li>} <br />
+        </li>
         {user && (
-          <a onClick={() => handleLogoutUser()} className="navigation__signout">
-            Logout
-          </a>
+          <li>
+            <a
+              onClick={() => handleLogoutUser()}
+              className="navigation__signout"
+            >
+              Logout
+            </a>
+          </li>
         )}
-      </div>
+      </ul>
     </div>
   );
 }
