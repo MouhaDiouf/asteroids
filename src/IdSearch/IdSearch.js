@@ -45,7 +45,9 @@ function IdSearch(props) {
           <img src={spinner} alt="spinner" />
         </div>
       )}
-      {props.userState.searchByIdError && <p>Enter a valid ID</p>}
+      {props.userState.searchByIdError && (
+        <p className="valid-message-info">Enter a valid ID</p>
+      )}
     </div>
   );
 }

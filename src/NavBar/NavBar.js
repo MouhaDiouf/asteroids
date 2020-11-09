@@ -24,14 +24,19 @@ function NavBar(props) {
     const menu = document.querySelector('.menu-list');
     if (!menu.classList.contains('appear')) {
       document.querySelector('.navigation').classList.add('full-width');
+      document.querySelector('html').style.height = '100vh';
       document.querySelector('.navigation__left').style.display = 'none';
+      // document.querySelector('.app__div').style.display = 'none';
+
       menu.classList.remove('disappear');
       menu.classList.add('appear');
       closeOnListClick();
     } else if (menu.classList.contains('appear')) {
       menu.classList.remove('appear');
       menu.classList.add('disappear');
+
       document.querySelector('.navigation').classList.remove('full-width');
+
       document.querySelector('.navigation__left').style.display = 'block';
     }
   };

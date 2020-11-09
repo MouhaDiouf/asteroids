@@ -6,13 +6,14 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AsteroidCard from '../AsteroidCard/AsteroidCard';
 import IdSearch from '../IdSearch/IdSearch';
-import Alert from '@material-ui/lab/Alert';
 
 function Home(props) {
   const { user } = props.userState;
+
   return (
-    <div>
+    <div className="app__div">
       <h1>Welcome to Asteroids</h1>
+
       <IdSearch />
       {!user && (
         <p className="login-notice">

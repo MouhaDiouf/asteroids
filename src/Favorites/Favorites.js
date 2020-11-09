@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Asteroid from '../Asteroid';
 import './Favorites.css';
 import AsteroidCard from '../AsteroidCard/AsteroidCard';
+import { Snackbar } from '@material-ui/core';
 
 function Favorites(props) {
   const { user } = props.userState;
@@ -27,7 +28,8 @@ function Favorites(props) {
   }, [user]);
   return (
     <div>
-      <h1>Your Favorites</h1>
+      <h1 className="favorites-title">Your Favorites</h1>
+
       <div className="favorites-div">
         {favorites.map((favorite) => {
           console.log('favorite is ', favorite);

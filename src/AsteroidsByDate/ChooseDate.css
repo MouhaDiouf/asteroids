@@ -1,0 +1,9 @@
+#startDate,
+#endDate {
+  background: white;
+  font-size: 20px;
+}
+
+.date-search-form > button {
+  margin: 20px;
+}

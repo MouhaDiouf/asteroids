@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './App.css';
-import ChooseDate from './ChooseDate';
+import ChooseDate from './AsteroidsByDate/ChooseDate';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import NavBar from './NavBar/NavBar';
 import { connect } from 'react-redux';
 import Login from './Login/Login';
 import { auth } from './firebase';
@@ -13,6 +12,7 @@ import IdSearch from './IdSearch/IdSearch';
 import Home from './Home/Home';
 import AsteroidDetails from './AsteroidDetails/AsteroidDetails';
 import Footer from './Footer/Footer';
+import Navigation from './Navigation/Navigation';
 
 function App(props) {
   const api_key = process.env.REACT_APP_API_KEY;
@@ -35,13 +35,13 @@ function App(props) {
 
   return (
     <div className="app">
-      {/* <div className="wrapper"> */}
-      <div id="stars"></div>
-      <div id="stars2"></div>
-      <div id="stars3"></div>
-
+      <div className="wrapper">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+      </div>
       <Router>
-        <NavBar />
+        <Navigation />
         <Switch>
           <Route exact path="/">
             <Home nearEarthObjects={nearEarthObjects} />

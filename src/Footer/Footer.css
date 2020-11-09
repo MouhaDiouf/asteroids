@@ -1,0 +1,10 @@
+.footer__left,
+.footer__right {
+  font-size: 28px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.footer__right a {
+  color: #ca3782;
+}
