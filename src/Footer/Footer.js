@@ -6,7 +6,9 @@ function Footer() {
     <div className="footer">
       <p className="footer__left">&copy; 2020 Asteroids</p>
       <p className="footer__right">
-        Made with ❤️ By <a href="https://mouhadiouf.com/">Mouhamadou</a>
+        Made with ❤️ By
+        {' '}
+        <a href="https://mouhadiouf.com/">Mouhamadou</a>
       </p>
     </div>
   );

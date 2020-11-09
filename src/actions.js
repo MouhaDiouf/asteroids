@@ -44,7 +44,7 @@ export const searchByDate = (startDate, endDate) => (dispatch) => {
   });
   axios
     .get(
-      `https://api.nasa.gov/neo/rest/v1/feed?start_date=${startDate}&end_date=${endDate}&detailed=true&api_key=${api_key}`
+      `https://api.nasa.gov/neo/rest/v1/feed?start_date=${startDate}&end_date=${endDate}&detailed=true&api_key=${api_key}`,
     )
     .then((response) => {
       dispatch({

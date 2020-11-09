@@ -28,17 +28,23 @@ function Navigation(props) {
           <img src={logo} alt="logo" />
         </Link>
       </div>
-      <div class="menu-wrap">
-        <input type="checkbox" class="toggler" />
-        <div class="hamburger">
-          <div></div>
+      <div className="menu-wrap">
+        <input type="checkbox" className="toggler" />
+        <div className="hamburger">
+          <div />
         </div>
 
-        <div class="menu">
+        <div className="menu">
           <div>
             <div>
               <ul>
-                {user && <li className="welcome-user">Welcome {user.email}</li>}{' '}
+                {user && (
+                <li className="welcome-user">
+                  Welcome
+                  {user.email}
+                </li>
+                )}
+                {' '}
                 <br />
                 <li>
                   <Link to="/" onClick={closeMenu}>

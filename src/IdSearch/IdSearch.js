@@ -1,9 +1,9 @@
 import { Button, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import Alert from '@material-ui/lab/Alert';
 import { idSearch } from '../actions';
 import spinner from '../Images/spinner.gif';
-import Alert from '@material-ui/lab/Alert';
 
 import './IdSearch.css';
 import { useHistory } from 'react-router';
@@ -34,8 +34,11 @@ function IdSearch(props) {
         onChange={(e) => setId(e.target.value)}
         placeholder="ex: 3729835"
         value={id}
-      />{' '}
-      <br /> <br />
+      />
+      {' '}
+      <br />
+      {' '}
+      <br />
       <Button variant="contained" color="primary" onClick={handleSearchById}>
         Search By ID
       </Button>

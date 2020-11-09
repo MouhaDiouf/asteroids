@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../firebase';
 import { connect } from 'react-redux';
+import { db } from '../firebase';
 import Asteroid from '../Asteroid';
 import './Favorites.css';
 import AsteroidCard from '../AsteroidCard/AsteroidCard';
@@ -19,7 +19,7 @@ function Favorites(props) {
             snapshot.docs.map((doc) => ({
               id: doc.id,
               data: doc.data(),
-            }))
+            })),
           );
         });
     } else {

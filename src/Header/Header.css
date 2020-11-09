@@ -91,4 +91,8 @@
   .header__text {
     width: 100%;
   }
+
+  .arrow {
+    bottom: 15%;
+  }
 }

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { searchByDate } from '../actions';
 import { connect } from 'react-redux';
+import { Button, TextField } from '@material-ui/core';
+import { searchByDate } from '../actions';
 import spinner from '../Images/spinner.gif';
 import AsteroidsDateResults from '../AsteroidsDateResults/AsteroidsDateResults';
-import { Button, TextField } from '@material-ui/core';
 import './ChooseDate.css';
+
 function ChooseDate(props) {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -19,7 +20,9 @@ function ChooseDate(props) {
         <>
           <h1>Choose a Date</h1>
           <form className="date-search-form">
-            <label htmlFor="startDate">Start date:</label> <br />
+            <label htmlFor="startDate">Start date:</label>
+            {' '}
+            <br />
             {/* <input
               name="start-date"
               id="startDate"
@@ -41,7 +44,9 @@ function ChooseDate(props) {
               onChange={(e) => setStartDate(e.target.value)}
             />
             <br />
-            <label htmlFor="endDate">End date: </label> <br />
+            <label htmlFor="endDate">End date: </label>
+            {' '}
+            <br />
             <TextField
               label="Ending Date"
               placeholder="yyyy-mm-dd"
@@ -92,8 +97,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleSearchByDate: (startDate, endDate) =>
-    dispatch(searchByDate(startDate, endDate)),
+  handleSearchByDate: (startDate, endDate) => dispatch(searchByDate(startDate, endDate)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChooseDate);

@@ -1,9 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Meteor from './Images/meteor.png';
 import { addToFavorites } from './actions';
-import { connect } from 'react-redux';
 import { db } from './firebase';
-import { Link } from 'react-router-dom';
 
 function Asteroid(props) {
   const { name, type, id } = props.asteroid;
@@ -16,9 +16,7 @@ function Asteroid(props) {
         .doc(props.asteroid.id)
         .delete()
         .then(() => console.log('Asteroid successfully removed from favorites'))
-        .catch((error) =>
-          console.error('Error removing the asteroid: ', error)
-        );
+        .catch((error) => console.error('Error removing the asteroid: ', error));
     }
   };
 

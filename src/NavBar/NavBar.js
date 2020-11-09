@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from '../actions';
-import { auth } from '../firebase';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import CloseIcon from '@material-ui/icons/Close';
+import { logout } from '../actions';
+import { auth } from '../firebase';
 import logo from '../Images/logo.png';
 
 import './NavBar.css';
@@ -48,7 +48,7 @@ function NavBar(props) {
 
   const closeOnListClick = () => {
     const allNavLinks = Array.from(
-      document.querySelectorAll('.menu-list li a')
+      document.querySelectorAll('.menu-list li a'),
     );
     allNavLinks.forEach((navLink) => {
       navLink.addEventListener('click', () => {
@@ -107,7 +107,14 @@ function NavBar(props) {
         )}
         <li className="navigation__element">
           {!user && <li>Welcome Guest</li> && <Link to="/login">Login</Link>}
-          {user && <li>Welcome {user.email}</li>} <br />
+          {user && (
+          <li>
+            Welcome
+            {user.email}
+          </li>
+          )}
+          {' '}
+          <br />
         </li>
         {user && (
           <li>

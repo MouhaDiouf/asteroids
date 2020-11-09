@@ -1,8 +1,9 @@
 import React from 'react';
 import './Header.css';
-import astronaut from '../Images/astronaut.png';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import astronaut from '../Images/astronaut.png';
+
 function Header() {
   return (
     <div className="header">
@@ -22,9 +23,9 @@ function Header() {
         </div>
       </div>
       <div className="arrow">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span />
+        <span />
+        <span />
       </div>
     </div>
   );
