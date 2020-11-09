@@ -13,11 +13,12 @@ import Home from './Home/Home';
 import AsteroidDetails from './AsteroidDetails/AsteroidDetails';
 import Footer from './Footer/Footer';
 import Navigation from './Navigation/Navigation';
+import About from './About/About';
 
 function App(props) {
   const api_key = process.env.REACT_APP_API_KEY;
   const [nearEarthObjects, setNearEarthObjects] = useState('');
-
+  const { user } = props.userState;
   useEffect(() => {
     axios
       .get(
@@ -46,8 +47,16 @@ function App(props) {
           <Route exact path="/">
             <Home nearEarthObjects={nearEarthObjects} />
           </Route>
+
           <Route path="/favorites">
-            <Favorites />
+            {' '}
+            {user ? (
+              <Favorites />
+            ) : (
+              <p>
+                <Link to="/login">Login</Link> to see your favorites
+              </p>
+            )}
           </Route>
           <Route path="/search-by-date">
             <ChooseDate />
@@ -61,6 +70,9 @@ function App(props) {
           <Route path="/asteroids/:id/details">
             <AsteroidDetails />
           </Route>
+          <Route path="/about">
+            <About />
+          </Route>
           <Route path="/">
             <h1>Not found</h1>
             <Switch />
@@ -72,8 +84,11 @@ function App(props) {
   );
 }
 
+const mapStateToProps = (state) => ({
+  userState: state,
+});
 const mapDispatchToProps = (dispatch) => ({
   handleSetUser: (user) => dispatch(setUser(user)),
   // handleLogout: () => dispatch(logout()),
 });
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

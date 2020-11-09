@@ -38,6 +38,8 @@ function Navigation(props) {
           <div>
             <div>
               <ul>
+                {user && <li className="welcome-user">Welcome {user.email}</li>}{' '}
+                <br />
                 <li>
                   <Link to="/" onClick={closeMenu}>
                     Home
@@ -53,7 +55,6 @@ function Navigation(props) {
                     ID Search
                   </Link>
                 </li>
-
                 {user && (
                   <li className="navigation__element">
                     <Link to="/favorites" onClick={closeMenu}>
@@ -67,13 +68,12 @@ function Navigation(props) {
                       Login
                     </Link>
                   )}
-                  {user && <li>Welcome {user.email}</li>} <br />
                 </li>
                 {user && (
                   <li>
                     <a
                       onClick={() => handleLogoutUser()}
-                      onClick={closeMenu}
+                      //   onClick={closeMenu}
                       className="navigation__signout"
                     >
                       Logout
