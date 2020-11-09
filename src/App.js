@@ -12,6 +12,7 @@ import Favorites from './Favorites/Favorites';
 import IdSearch from './IdSearch/IdSearch';
 import Home from './Home/Home';
 import AsteroidDetails from './AsteroidDetails/AsteroidDetails';
+import Footer from './Footer/Footer';
 
 function App(props) {
   const api_key = process.env.REACT_APP_API_KEY;
@@ -66,6 +67,7 @@ function App(props) {
           </Route>
         </Switch>
       </Router>
+      <Footer />
     </div>
   );
 }

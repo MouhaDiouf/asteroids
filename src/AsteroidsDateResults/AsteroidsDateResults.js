@@ -1,16 +1,21 @@
 import React from 'react';
-import Asteroid from '../Asteroid';
+import AsteroidCard from '../AsteroidCard/AsteroidCard';
 import './AsteroidsDateResults.css';
 
 function AsteroidsDateResults({ asteroids }) {
+  let count = 0;
+
   console.log('Asteroids is', asteroids);
   return (
     <div className="date-results">
       <h1>Results By Date</h1>
       <div className="date-results__asteroids">
-        {Object.entries(asteroids).map(([day, asteroidsByDate]) => {
+        {Object.entries(asteroids).map(([_, asteroidsByDate]) => {
           return asteroidsByDate.map((asteroid) => {
-            return <Asteroid asteroid={asteroid} />;
+            if (count < 10) {
+              count++;
+              return <AsteroidCard asteroid={asteroid} />;
+            }
           });
         })}
       </div>
