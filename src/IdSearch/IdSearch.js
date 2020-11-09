@@ -1,30 +1,44 @@
+import { Button, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { idSearch } from '../actions';
 import spinner from '../Images/spinner.gif';
+import Alert from '@material-ui/lab/Alert';
 
 import './IdSearch.css';
+import { useHistory } from 'react-router';
 
 function IdSearch(props) {
-  console.log('props for user is ', props);
+  const history = useHistory();
   const [id, setId] = useState('');
   const handleSearchById = () => {
     props.dispatchSearchById(id);
-    console.log('ID SEARCH CALLED WITH ID ', id);
   };
+
+  const { userState } = props;
+
+  if (userState.redirectToIdPage) {
+    history.push(`/asteroids/${id}/details`);
+  }
+
   return (
     <div>
       <h1>Search By ID</h1>
-      <input
-        type="number"
-        name="idSearch"
+      <TextField
         id="idSearch"
+        label="ID Search"
+        type="number"
+        variant="outlined"
+        color="primary"
+        className="outline"
+        onChange={(e) => setId(e.target.value)}
         placeholder="ex: 3729835"
         value={id}
-        onChange={(e) => setId(e.target.value)}
       />{' '}
       <br /> <br />
-      <button onClick={handleSearchById}>Search By ID</button>
+      <Button variant="contained" color="primary" onClick={handleSearchById}>
+        Search By ID
+      </Button>
       {props.userState.searchingById && (
         <div className="loading-div">
           <p>Searching By ID </p>

@@ -3,6 +3,7 @@ import { db } from '../firebase';
 import { connect } from 'react-redux';
 import Asteroid from '../Asteroid';
 import './Favorites.css';
+import AsteroidCard from '../AsteroidCard/AsteroidCard';
 
 function Favorites(props) {
   const { user } = props.userState;
@@ -28,9 +29,12 @@ function Favorites(props) {
     <div>
       <h1>Your Favorites</h1>
       <div className="favorites-div">
-        {favorites.map((favorite) => (
-          <Asteroid asteroid={favorite} favorite="true" />
-        ))}
+        {favorites.map((favorite) => {
+          console.log('favorite is ', favorite);
+          return (
+            <AsteroidCard asteroid={favorite.data.asteroid} favorite="true" />
+          );
+        })}
       </div>
     </div>
   );

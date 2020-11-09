@@ -4,14 +4,18 @@ import spinner from '../Images/spinner.gif';
 import './Home.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import AsteroidCard from '../AsteroidCard/AsteroidCard';
+import IdSearch from '../IdSearch/IdSearch';
+import Alert from '@material-ui/lab/Alert';
 
 function Home(props) {
   const { user } = props.userState;
   return (
     <div>
       <h1>Welcome to Asteroids</h1>
+      <IdSearch />
       {!user && (
-        <p>
+        <p className="login-notice">
           <Link to="/login">Login</Link> to add Asteroids to your favorites
         </p>
       )}
@@ -19,7 +23,7 @@ function Home(props) {
       {props.nearEarthObjects?.length ? (
         <div className="app__browse_asteroids">
           {props.nearEarthObjects.map((asteroid) => (
-            <Asteroid asteroid={asteroid} key={asteroid.id} />
+            <AsteroidCard asteroid={asteroid} key={asteroid.id} />
           ))}
         </div>
       ) : (
@@ -31,6 +35,7 @@ function Home(props) {
     </div>
   );
 }
+
 const mapStateToProps = (state) => ({
   userState: state,
 });

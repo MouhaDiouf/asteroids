@@ -8,6 +8,7 @@ import {
   SEARCH_BY_ID_FINISHED,
   SEARCHING_BY_DATE,
   SEARCH_BY_ID_ERROR,
+  SEARCH_BY_ID_SUCCESS,
 } from '../actions';
 
 const initialState = {
@@ -45,11 +46,18 @@ export const reducer = (state = initialState, action) => {
         searchingById: true,
       };
 
-    case SEARCH_BY_ID_FINISHED:
+    case SEARCH_BY_ID_SUCCESS:
       return {
         ...state,
         asteroidFetched: action.asteroid,
         searchingById: false,
+        redirectToIdPage: true,
+      };
+
+    case SEARCH_BY_ID_FINISHED:
+      return {
+        ...state,
+        redirectToIdPage: false,
       };
 
     case SEARCH_BY_ID_ERROR:

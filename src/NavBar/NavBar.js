@@ -5,6 +5,7 @@ import { logout } from '../actions';
 import { auth } from '../firebase';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import CloseIcon from '@material-ui/icons/Close';
+import logo from '../Images/logo.png';
 
 import './NavBar.css';
 
@@ -58,7 +59,9 @@ function NavBar(props) {
     <div className="navigation">
       <div className="navigation__left">
         <span className="navigation__logo">
-          <Link to="/">ASTEROIDS</Link>
+          <Link to="/">
+            <img src={logo} alt="logo" />
+          </Link>
         </span>
       </div>
 
