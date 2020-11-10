@@ -41,11 +41,9 @@ function Navigation(props) {
               <ul>
                 {user && (
                   <li className="welcome-user">
-                    Welcome
-                    {user.email}
+                    Welcome <span>{user.email}</span>
                   </li>
-                )}
-                {' '}
+                )}{' '}
                 <br />
                 <li>
                   <Link to="/" onClick={closeMenu}>
@@ -75,7 +73,7 @@ function Navigation(props) {
                   </li>
                 )}
                 <li className="navigation__element">
-                  {!user && <li>Welcome Guest</li> && (
+                  {!user && (
                     <Link to="/login" onClick={closeMenu}>
                       Login
                     </Link>

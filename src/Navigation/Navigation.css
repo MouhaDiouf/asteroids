@@ -158,3 +158,21 @@
   color: white;
   cursor: default;
 }
+
+.navigation__signout {
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+  font-size: 3rem;
+  margin: 0;
+  border: none;
+}
+
+.navigation__signout:hover {
+  color: #ca3782;
+}
+
+.welcome-user > span {
+  display: inline-block;
+  margin: 0 5px;
+}

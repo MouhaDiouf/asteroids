@@ -4,7 +4,8 @@
 }
 
 .login-notice {
-  font-size: 23px;
+  font-size: 20px;
+  margin: 15px 0;
 }
 
 .login-notice > a {
