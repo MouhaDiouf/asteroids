@@ -19,7 +19,7 @@
 - Material UI
 
 ## Live Version 
-<a href="https://http://asteroids-mo.netlify.app/" target="_blank" > Live version </a>
+<a href="https://asteroids-mo.netlify.app/" target="_blank" > Live version </a>
 
 ## Usage 
 
@@ -27,14 +27,16 @@
  - git clone https://github.com/MouhaDiouf/asteroids
  
  ### Run the project
- - to install the dependencies run the command : npm install 
- - after installation, run the command: npm start
+ - To install the dependencies run the command : npm install 
+ - Register your Api Key by signing up on the <a href="https://api.nasa.gov/">API platform</a>. Then save that key into an .env file. Call it REACT_API_KEY.
+  - After installation, run the command: npm start
+ 
 
 ## Description 
 
 This app communicates with the Nasa API to display asteroids based on their IDs or date. It uses React on the front-end and Firebase on the backend. 
 
-The user can create an account, browse through a list of asteroids and add or remove asteroids from its favorites. The user can also have access to its favorite asteroids anytime he logs in.
+The user can create an account, browse through a list of asteroids, and add or remove asteroids from its favorites. The user can also have access to its favorite asteroids anytime he logs in.
 
 
 ## Developed by
@@ -51,6 +53,7 @@ You can also check <a href="https://mouhadiouf.com/" target="_blank"> my portfol
 ## Potential Future Improvements 
 
 - Create admin dashboard for a user to manage its profile
+
 
 ## Contributing
 
