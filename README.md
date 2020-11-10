@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Building an Asteroid app with React & Redux
+![screenshot](./src/Images/asteroids_screenshot_one.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+![screenshot](./src/Images/asteroids_screenshot_two.png)
 
-In the project directory, you can run:
 
-### `yarn start`
+## Technologies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React
+- Ruby on Rails
+- React-DOM
+- Create-React-App
+- React Hooks
+- React Router
+- Eslint
+- npm
+- CSS
+- Jest
+- React Testing Library
+- Material UI
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Live Version 
+<a href="https://http://asteroids-mo.netlify.app/" target="_blank" > Live version </a>
 
-### `yarn test`
+## Usage 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Clone the project: 
+ - git clone https://github.com/MouhaDiouf/asteroids
+ 
+ ### Run the project
+ - to install the dependencies run the command : npm install 
+ - after installation, run the command: npm start
 
-### `yarn build`
+## Description 
+This is the last capstone project I built while being a software developer student at Microverse. It's a web application where the user can create an account, browse through available cars, and book cars for a date and location.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The web application uses React as the front-end language and Ruby on Rails as the back-end language. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+I built the Ruby On Rails backend API so that the two separate web apps can communicate smoothly.  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+## Developed by
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Mouhamadou Diouf ( <a href="https://github.com/MouhaDiouf"> @mouhad </a>)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Let's connect on: 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+-  <a href="https://www.linkedin.com/in/mouha-diouf/" target="_blank" > LinkedIn </a>
+- <a href="https://twitter.com/mouhamadiouf" target="_blank"> Twitter</a>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+You can also check <a href="https://mouhadiouf.com/" target="_blank"> my portfolio </a>
 
-## Learn More
+## Potential Future Improvements 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Create an admin dashboard to manage users
+- Implement an auto-login using the browser cookies 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Fork it (https://github.com/MouhaDiouf/asteroids)
+2. Create your feature branch (git checkout -b feature/[choose-a-name])
+3. Commit your changes (git commit -am 'What this commit will fix/add')
+4. Push to the branch (git push origin feature/[chosen name])
+5. Create a new Pull Request
