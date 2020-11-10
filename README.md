@@ -8,16 +8,14 @@
 ## Technologies
 
 - React
-- Ruby on Rails
 - React-DOM
 - Create-React-App
 - React Hooks
 - React Router
 - Eslint
+- Firebase
 - npm
 - CSS
-- Jest
-- React Testing Library
 - Material UI
 
 ## Live Version 
@@ -33,11 +31,10 @@
  - after installation, run the command: npm start
 
 ## Description 
-This is the last capstone project I built while being a software developer student at Microverse. It's a web application where the user can create an account, browse through available cars, and book cars for a date and location.
 
-The web application uses React as the front-end language and Ruby on Rails as the back-end language. 
+This app communicates with the Nasa API to display asteroids based on their IDs or date. It uses React on the front-end and Firebase on the backend. 
 
-I built the Ruby On Rails backend API so that the two separate web apps can communicate smoothly.  
+The user can create an account, browse through a list of asteroids and add or remove asteroids from its favorites. The user can also have access to its favorite asteroids anytime he logs in.
 
 
 ## Developed by
@@ -53,9 +50,7 @@ You can also check <a href="https://mouhadiouf.com/" target="_blank"> my portfol
 
 ## Potential Future Improvements 
 
-- Create an admin dashboard to manage users
-- Implement an auto-login using the browser cookies 
-
+- Create admin dashboard for a user to manage its profile
 
 ## Contributing
 
