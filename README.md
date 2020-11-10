@@ -16,7 +16,7 @@
 - Firebase
 - npm
 - CSS
-- Sass
+- SCSS
 - Material UI
 
 ## Live Version 
