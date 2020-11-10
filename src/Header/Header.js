@@ -18,7 +18,9 @@ function Header() {
             A Space App That Talks About Asteroids
           </p>
           <Button variant="contained" color="primary" size="large">
-            <Link to="/about">Learn More</Link>
+            <Link to="/about" className="about-link">
+              Learn More
+            </Link>
           </Button>
         </div>
       </div>

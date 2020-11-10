@@ -1,23 +1,21 @@
-import { Button, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Alert from '@material-ui/lab/Alert';
+import { Button, TextField } from '@material-ui/core';
+import { useHistory } from 'react-router';
 import { idSearch } from '../actions';
 import spinner from '../Images/spinner.gif';
-
 import './IdSearch.css';
-import { useHistory } from 'react-router';
 
-function IdSearch(props) {
+function IdSearch({ userState, dispatchSearchById }) {
   const history = useHistory();
   const [id, setId] = useState('');
   const handleSearchById = () => {
-    props.dispatchSearchById(id);
+    dispatchSearchById(id);
   };
 
-  const { userState } = props;
-
-  if (userState.redirectToIdPage) {
+  const { redirectToIdPage, searchingById, searchByIdError } = userState;
+  if (redirectToIdPage) {
     history.push(`/asteroids/${id}/details`);
   }
 
@@ -42,13 +40,13 @@ function IdSearch(props) {
       <Button variant="contained" color="primary" onClick={handleSearchById}>
         Search By ID
       </Button>
-      {props.userState.searchingById && (
+      {searchingById && (
         <div className="loading-div">
           <p>Searching By ID </p>
           <img src={spinner} alt="spinner" />
         </div>
       )}
-      {props.userState.searchByIdError && (
+      {searchByIdError && (
         <p className="valid-message-info">Enter a valid ID</p>
       )}
     </div>
@@ -60,4 +58,14 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   userState: state,
 });
+
+IdSearch.propTypes = {
+  userState: PropTypes.shape({
+    redirectToIdPage: PropTypes.bool,
+    searchingById: PropTypes.bool,
+    searchByIdError: PropTypes.bool,
+  }).isRequired,
+  dispatchSearchById: PropTypes.func.isRequired,
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(IdSearch);

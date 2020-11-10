@@ -80,19 +80,35 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 700px) {
+  body {
+    overflow-x: hidden;
+  }
+  .header {
+    width: 100%;
+  }
   .header__content {
     flex-direction: column;
     padding: 20px;
+    height: 600px;
+  }
+
+  .header__text > h1 {
+    font-size: 5rem;
   }
   .header__image {
-    width: 60%;
+    width: 80%;
   }
   .header__text {
     width: 100%;
   }
 
   .arrow {
-    bottom: 15%;
+    display: none;
   }
+}
+
+.about-link {
+  text-decoration: none;
+  color: white;
 }

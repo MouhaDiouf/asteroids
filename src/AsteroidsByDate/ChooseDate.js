@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, TextField } from '@material-ui/core';
 import { searchByDate } from '../actions';
@@ -6,32 +7,28 @@ import spinner from '../Images/spinner.gif';
 import AsteroidsDateResults from '../AsteroidsDateResults/AsteroidsDateResults';
 import './ChooseDate.css';
 
-function ChooseDate(props) {
+function ChooseDate({ userState, handleSearchByDate }) {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+
+  const { searchByDateError, searchingByDate, asteroidsByDate } = userState;
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.handleSearchByDate(startDate, endDate);
+    handleSearchByDate(startDate, endDate);
   };
-
   return (
     <div>
-      {!props.userState.searchingByDate && (
+      {!searchingByDate && (
         <>
           <h1>Choose a Date</h1>
+          {searchByDateError && (
+            <p className="valid-date">
+              Please enter valid dates. The max range in one query is 7 days
+            </p>
+          )}
           <form className="date-search-form">
-            <label htmlFor="startDate">Start date:</label>
-            {' '}
+            <span>Start date:</span>
             <br />
-            {/* <input
-              name="start-date"
-              id="startDate"
-              required
-              placeholder="yyyy-mm-dd"
-              min="1900-01-01"
-              max="2030-12-31"
-              onChange={(e) => setStartDate(e.target.value)}
-            /> */}
             <TextField
               label="Starting Date"
               name="start-date"
@@ -44,8 +41,7 @@ function ChooseDate(props) {
               onChange={(e) => setStartDate(e.target.value)}
             />
             <br />
-            <label htmlFor="endDate">End date: </label>
-            {' '}
+            <span>End date: </span>
             <br />
             <TextField
               label="Ending Date"
@@ -58,15 +54,6 @@ function ChooseDate(props) {
               required
               onChange={(e) => setEndDate(e.target.value)}
             />
-            {/* <input
-              placeholder="yyyy-mm-dd"
-              min="1900-01-01"
-              max="2030-12-31"
-              name="end-date"
-              id="endDate"
-              required
-              onChange={(e) => setEndDate(e.target.value)}
-            />{' '} */}
             <br />
             <Button
               variant="contained"
@@ -77,12 +64,12 @@ function ChooseDate(props) {
               Check Asteroids
             </Button>
           </form>
-          {props.userState.asteroidsByDate && (
-            <AsteroidsDateResults asteroids={props.userState.asteroidsByDate} />
+          {asteroidsByDate && (
+            <AsteroidsDateResults asteroids={asteroidsByDate} />
           )}
         </>
       )}
-      {props.userState.searchingByDate && (
+      {searchingByDate && (
         <div className="loading-div">
           <p>Searching By Date </p>
           <img src={spinner} alt="spinner" />
@@ -91,6 +78,15 @@ function ChooseDate(props) {
     </div>
   );
 }
+
+ChooseDate.propTypes = {
+  userState: PropTypes.shape({
+    searchingByDate: PropTypes.bool,
+    searchByDateError: PropTypes.bool,
+    asteroidsByDate: PropTypes.instanceOf(Object),
+  }).isRequired,
+  handleSearchByDate: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   userState: state,

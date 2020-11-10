@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
-import {
-  BrowserRouter as Router, Switch, Route, Link,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ChooseDate from './AsteroidsByDate/ChooseDate';
 import Login from './Login/Login';
@@ -18,20 +17,20 @@ import Navigation from './Navigation/Navigation';
 import About from './About/About';
 
 function App(props) {
-  const api_key = process.env.REACT_APP_API_KEY;
-  const [nearEarthObjects, setNearEarthObjects] = useState('');
-  const { user } = props.userState;
+  const apiKey = process.env.REACT_APP_API_KEY;
+  const [nearEarthObjects, setNearEarthObjects] = useState([]);
+  const { userState, handleSetUser } = props;
+  const { user } = userState;
   useEffect(() => {
     axios
       .get(
-        `https://api.nasa.gov/neo/rest/v1/neo/browse?page=0&size=10&api_key=${api_key}`,
+        `https://api.nasa.gov/neo/rest/v1/neo/browse?page=0&size=10&api_key=${apiKey}`
       )
       .then(({ data }) => setNearEarthObjects(data.near_earth_objects));
+    console.log(nearEarthObjects);
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        props.handleSetUser(authUser);
-      } else {
-        // props.handleLogout();
+        handleSetUser(authUser);
       }
     });
   }, []);
@@ -56,9 +55,7 @@ function App(props) {
               <Favorites />
             ) : (
               <p>
-                <Link to="/login">Login</Link>
-                {' '}
-                to see your favorites
+                <Link to="/login">Login</Link> to see your favorites
               </p>
             )}
           </Route>
@@ -88,11 +85,17 @@ function App(props) {
   );
 }
 
+App.propTypes = {
+  userState: PropTypes.shape({
+    user: PropTypes.instanceOf(Object),
+  }).isRequired,
+  handleSetUser: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = (state) => ({
   userState: state,
 });
 const mapDispatchToProps = (dispatch) => ({
   handleSetUser: (user) => dispatch(setUser(user)),
-  // handleLogout: () => dispatch(logout()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -11,7 +11,7 @@ function Login() {
     e.preventDefault();
     auth
       .signInWithEmailAndPassword(email, password)
-      .then((auth) => {
+      .then(() => {
         history.push('/');
       })
       .catch((error) => alert(error.message));
@@ -20,8 +20,8 @@ function Login() {
     e.preventDefault();
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then((auth) => {
-        if (auth) {
+      .then((res) => {
+        if (res) {
           history.push('/');
         }
       })
@@ -51,11 +51,19 @@ function Login() {
             required
             autoComplete="true"
           />
-          <button onClick={signIn} className="login__signInButton">
+          <button
+            type="button"
+            onClick={signIn}
+            className="login__signInButton"
+          >
             Sign In
           </button>
         </form>
-        <button onClick={register} className="login__registerButton">
+        <button
+          type="button"
+          onClick={register}
+          className="login__registerButton"
+        >
           Create Your Asteroid Account
         </button>
       </div>

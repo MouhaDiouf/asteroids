@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { db } from '../firebase';
-import Asteroid from '../Asteroid';
 import './Favorites.css';
 import AsteroidCard from '../AsteroidCard/AsteroidCard';
-import { Snackbar } from '@material-ui/core';
 
-function Favorites(props) {
-  const { user } = props.userState;
+function Favorites({ userState }) {
+  const { user } = userState;
   const [favorites, setFavorites] = useState([]);
   useEffect(() => {
     if (user) {
@@ -31,16 +30,23 @@ function Favorites(props) {
       <h1 className="favorites-title">Your Favorites</h1>
 
       <div className="favorites-div">
-        {favorites.map((favorite) => {
-          console.log('favorite is ', favorite);
-          return (
-            <AsteroidCard asteroid={favorite.data.asteroid} favorite="true" />
-          );
-        })}
+        {favorites.map((favorite) => (
+          <AsteroidCard
+            key={favorite.data.asteroid.id}
+            asteroid={favorite.data.asteroid}
+            favorite="true"
+          />
+        ))}
       </div>
     </div>
   );
 }
+
+Favorites.propTypes = {
+  userState: PropTypes.shape({
+    user: PropTypes.instanceOf(Object).isRequired,
+  }).isRequired,
+};
 
 const mapStateToProps = (state) => ({
   userState: state,

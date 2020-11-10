@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../actions';
@@ -7,17 +8,17 @@ import logo from '../Images/logo.png';
 import './Navigation.css';
 
 function Navigation(props) {
-  const { user } = props.userState;
+  const { handleLogout, userState } = props;
+  const { user } = userState;
 
   const handleLogoutUser = () => {
-    props.handleLogout();
+    handleLogout();
     if (user) {
       auth.signOut();
     }
   };
 
   const closeMenu = () => {
-    console.log('close menu called');
     const checkbox = document.querySelector('.toggler');
     checkbox.click();
   };
@@ -39,10 +40,10 @@ function Navigation(props) {
             <div>
               <ul>
                 {user && (
-                <li className="welcome-user">
-                  Welcome
-                  {user.email}
-                </li>
+                  <li className="welcome-user">
+                    Welcome
+                    {user.email}
+                  </li>
                 )}
                 {' '}
                 <br />
@@ -61,6 +62,11 @@ function Navigation(props) {
                     ID Search
                   </Link>
                 </li>
+                <li>
+                  <Link to="/search-by-date" onClick={closeMenu}>
+                    Date Search
+                  </Link>
+                </li>
                 {user && (
                   <li className="navigation__element">
                     <Link to="/favorites" onClick={closeMenu}>
@@ -77,13 +83,13 @@ function Navigation(props) {
                 </li>
                 {user && (
                   <li>
-                    <a
+                    <button
                       onClick={() => handleLogoutUser()}
-                      //   onClick={closeMenu}
                       className="navigation__signout"
+                      type="button"
                     >
                       Logout
-                    </a>
+                    </button>
                   </li>
                 )}
               </ul>
@@ -94,6 +100,13 @@ function Navigation(props) {
     </div>
   );
 }
+
+Navigation.propTypes = {
+  userState: PropTypes.shape({
+    user: PropTypes.instanceOf(Object),
+  }).isRequired,
+  handleLogout: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   userState: state,

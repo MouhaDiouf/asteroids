@@ -1,21 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addToFavorites } from '../actions';
-import { db } from '../firebase';
 import { Button } from '@material-ui/core';
+import { db } from '../firebase';
+import { addToFavorites } from '../actions';
 
 import './AsteroidCard.scss';
 
-function AsteroidCard(props) {
-  const { favorite, asteroid } = props;
-  const { user } = props.userState;
+function AsteroidCard({ favorite, asteroid, userState }) {
+  const { user } = userState;
 
   const removeFromFavorites = () => {
     if (user) {
       db.collection('users')
         .doc(user.uid)
         .collection('favorites')
-        .doc(props.asteroid.id)
+        .doc(asteroid.id)
         .delete()
         .then(() => console.log('Asteroid successfully removed from favorites'))
         .catch((error) =>
@@ -29,9 +29,9 @@ function AsteroidCard(props) {
       db.collection('users')
         .doc(user.uid)
         .collection('favorites')
-        .doc(props.asteroid.id)
+        .doc(asteroid.id)
         .set({
-          asteroid: props.asteroid,
+          asteroid,
         });
     }
   };
@@ -49,8 +49,11 @@ function AsteroidCard(props) {
             <ul>
               <li>Name: {asteroid.name}</li>
               <li>
-                Estimated Diameter:{' '}
-                {asteroid.estimated_diameter?.kilometers.estimated_diameter_min}{' '}
+                Estimated Diameter:
+                {asteroid.estimated_diameter
+                  ? asteroid.estimated_diameter.kilometers
+                      .estimated_diameter_min
+                  : 'No Data'}{' '}
                 km
               </li>
               <li>Absolute Magnitude: {asteroid.absolute_magnitude_h}</li>
@@ -60,11 +63,15 @@ function AsteroidCard(props) {
               </li>
               <li>
                 First Observation Date:{' '}
-                {asteroid.orbital_data?.first_observation_date}
+                {asteroid.orbital_data
+                  ? asteroid.orbital_data.first_observation_date
+                  : 'No Data'}
               </li>
               <li>
                 Last Observation Date:{' '}
-                {asteroid.orbital_data?.last_observation_date}
+                {asteroid.orbital_data
+                  ? asteroid.orbital_data.last_observation_date
+                  : 'No Data'}
               </li>
             </ul>
             {user && !favorite && (
@@ -100,6 +107,19 @@ function AsteroidCard(props) {
     </div>
   );
 }
+
+AsteroidCard.propTypes = {
+  asteroid: PropTypes.shape({
+    name: PropTypes.string,
+    is_potentially_hazardous_asteroid: PropTypes.bool,
+    absolute_magnitude_h: PropTypes.number,
+    estimated_diameter: PropTypes.object,
+    orbital_data: PropTypes.instanceOf(Object),
+    id: PropTypes.string,
+  }).isRequired,
+  favorite: PropTypes.string,
+  userState: PropTypes.instanceOf(Object),
+};
 
 const mapStateToProps = (state) => ({
   userState: state,

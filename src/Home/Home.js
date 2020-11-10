@@ -1,15 +1,15 @@
 import React from 'react';
-import Asteroid from '../Asteroid';
-import spinner from '../Images/spinner.gif';
+import PropTypes from 'prop-types';
 import './Home.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AsteroidCard from '../AsteroidCard/AsteroidCard';
 import IdSearch from '../IdSearch/IdSearch';
 import Header from '../Header/Header';
+import spinner from '../Images/spinner.gif';
 
-function Home(props) {
-  const { user } = props.userState;
+function Home({ userState, nearEarthObjects }) {
+  const { user } = userState;
 
   return (
     <div className="app__div">
@@ -21,9 +21,9 @@ function Home(props) {
         </p>
       )}
 
-      {props.nearEarthObjects?.length ? (
+      {nearEarthObjects && nearEarthObjects.length ? (
         <div className="app__browse_asteroids">
-          {props.nearEarthObjects.map((asteroid) => (
+          {nearEarthObjects.map((asteroid) => (
             <AsteroidCard asteroid={asteroid} key={asteroid.id} />
           ))}
         </div>
@@ -36,6 +36,13 @@ function Home(props) {
     </div>
   );
 }
+
+Home.propTypes = {
+  userState: PropTypes.shape({
+    user: PropTypes.instanceOf(Object),
+  }).isRequired,
+  nearEarthObjects: PropTypes.instanceOf(Array),
+};
 
 const mapStateToProps = (state) => ({
   userState: state,

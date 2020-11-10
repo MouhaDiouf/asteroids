@@ -9,6 +9,7 @@ import {
   SEARCHING_BY_DATE,
   SEARCH_BY_ID_ERROR,
   SEARCH_BY_ID_SUCCESS,
+  SEARCH_BY_DATE_ERROR,
 } from '../actions';
 
 const initialState = {
@@ -34,11 +35,16 @@ export const reducer = (state = initialState, action) => {
         ...state,
         searchingByDate: true,
       };
+    case SEARCH_BY_DATE_ERROR:
+      return {
+        searchByDateError: true,
+      };
     case FINISHED_SEARCHING_BY_DATE:
       return {
         ...state,
         searchingByDate: false,
         asteroidsByDate: action.result,
+        searchByDateError: false,
       };
     case SEARCHING_BY_ID:
       return {
