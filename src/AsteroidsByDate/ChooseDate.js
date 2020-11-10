@@ -19,7 +19,7 @@ function ChooseDate({ userState, handleSearchByDate }) {
   return (
     <div>
       {!searchingByDate && (
-        <>
+        <div className="date-search-div">
           <h1>Choose a Date</h1>
           {searchByDateError && (
             <p className="valid-date">
@@ -67,7 +67,7 @@ function ChooseDate({ userState, handleSearchByDate }) {
           {asteroidsByDate && (
             <AsteroidsDateResults asteroids={asteroidsByDate} />
           )}
-        </>
+        </div>
       )}
       {searchingByDate && (
         <div className="loading-div">
@@ -93,7 +93,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleSearchByDate: (startDate, endDate) => dispatch(searchByDate(startDate, endDate)),
+  handleSearchByDate: (startDate, endDate) =>
+    dispatch(searchByDate(startDate, endDate)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChooseDate);

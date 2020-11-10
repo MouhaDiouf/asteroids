@@ -21,6 +21,8 @@ function Home({ userState, nearEarthObjects }) {
         </p>
       )}
 
+      <h1>Browse Asteroids</h1>
+
       {nearEarthObjects && nearEarthObjects.length ? (
         <div className="app__browse_asteroids">
           {nearEarthObjects.map((asteroid) => (
