@@ -1,0 +1,114 @@
+.header {
+  position: relative;
+}
+.header__content {
+  height: 900px;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header__text {
+  flex: 0.7;
+}
+
+.header__text > h1 {
+  font-size: 7rem;
+  letter-spacing: 10px;
+}
+
+.header__text > p {
+  font-size: 2.5rem;
+  margin: 20px 0;
+}
+
+.header__text button {
+  margin: 20px 10px;
+  background-color: #ca3782;
+  font-size: 20px;
+}
+
+.header__text button:hover {
+  background-color: #ca3782;
+}
+.header__image {
+  flex: 0.4;
+}
+
+.header__image > img {
+  width: 100%;
+}
+
+/* Arrow animation */
+.arrow {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.arrow span {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-bottom: 5px solid #ca3782;
+  border-right: 5px solid #ca3782;
+  transform: rotate(45deg);
+  margin: -10px;
+  animation: animate 2s infinite;
+}
+.arrow span:nth-child(2) {
+  animation-delay: -0.2s;
+}
+.arrow span:nth-child(3) {
+  animation-delay: -0.4s;
+}
+@keyframes animate {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-20px, -20px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(20px, 20px);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    overflow-x: hidden;
+  }
+  .header {
+    width: 100%;
+  }
+  .header__content {
+    flex-direction: column;
+    padding: 20px;
+    height: 600px;
+  }
+
+  .header__text > h1 {
+    font-size: 5rem;
+  }
+  .header__image {
+    width: 80%;
+  }
+  .header__text {
+    width: 100%;
+  }
+
+  .arrow {
+    display: none;
+  }
+}
+
+.about-link {
+  text-decoration: none;
+  color: white;
+}

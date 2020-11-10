@@ -1,0 +1,21 @@
+.spinner {
+  height: 80px;
+  width: 80px;
+}
+
+.login-notice {
+  font-size: 20px;
+  margin: 15px 0;
+}
+
+.login-notice > a {
+  color: #ca3782;
+}
+
+.app__div {
+  text-align: center;
+}
+.app__div > h1 {
+  font-size: 3rem;
+  margin-top: 40px;
+}

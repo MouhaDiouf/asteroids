@@ -1,0 +1,17 @@
+.footer__left,
+.footer__right {
+  font-size: 28px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.footer__right a {
+  color: #ca3782;
+}
+
+@media screen and (max-width: 700px) {
+  .footer__left,
+  .footer__right {
+    font-size: 16px;
+  }
+}

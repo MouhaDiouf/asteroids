@@ -1,0 +1,28 @@
+#startDate,
+#endDate {
+  background: white;
+  font-size: 20px;
+}
+
+.date-search-div > h1 {
+  font-size: 3rem;
+}
+
+.date-search-form > button {
+  margin: 20px;
+}
+
+.date-search-form > span {
+  font-size: 17px;
+  margin: 10px;
+  display: inline-block;
+}
+
+.valid-date {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.MuiButton-label {
+  font-size: 16px;
+}
